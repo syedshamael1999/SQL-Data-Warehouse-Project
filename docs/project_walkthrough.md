@@ -18,6 +18,10 @@
 
 """" GIVE LINK TO SCRIPT""""
 ---
+### Data Flow Diagram
+![image](https://github.com/user-attachments/assets/c53e32c3-e676-4500-a264-7d5f297b15aa)
+
+---
 ### Bronze layer Steps
 ![image](https://github.com/user-attachments/assets/f0f5a534-33da-4963-b05a-15e020322df0)  
 
