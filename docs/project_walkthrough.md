@@ -14,6 +14,10 @@
 ![image](https://github.com/user-attachments/assets/b77d738e-cb06-45fb-8cc1-608d169c75bc)  
 
 ---
+### Creating Database and schema
+
+"""" GIVE LINK TO SCRIPT""""
+---
 ### Bronze layer Steps
 ![image](https://github.com/user-attachments/assets/f0f5a534-33da-4963-b05a-15e020322df0)  
 
