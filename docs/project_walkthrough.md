@@ -17,9 +17,6 @@
 ### Creating Database and schema
 
 """" GIVE LINK TO SCRIPT""""
----
-### Data Flow Diagram
-![image](https://github.com/user-attachments/assets/c53e32c3-e676-4500-a264-7d5f297b15aa)
 
 ---
 ### Bronze layer Steps
@@ -31,8 +28,14 @@
 
 ---
 ### Silver layer Steps
-![image](https://github.com/user-attachments/assets/85cdd64b-7ae3-4d20-9eb6-3b73ef816fc4)
+![image](https://github.com/user-attachments/assets/0b0f0302-f4d9-4a30-b09e-20e3aea83e1a)
+
+![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)
 
 ---
 ### Gold layer Steps
-![image](https://github.com/user-attachments/assets/90a53a72-5e32-4f20-91ef-d266eabeac3b)
+![image](https://github.com/user-attachments/assets/90a53a72-5e32-4f20-91ef-d266eabeac3b)  
+
+---
+### Data Flow Diagram
+![image](https://github.com/user-attachments/assets/c53e32c3-e676-4500-a264-7d5f297b15aa)
