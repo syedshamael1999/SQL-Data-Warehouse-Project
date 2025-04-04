@@ -1,30 +1,33 @@
 # Datawarehouse Details
 
-### Datawarehouse Approach Selection
+### 🧠 Datawarehouse Approach Selection
 ![image](https://github.com/user-attachments/assets/38fa962a-bdfd-46bd-8ece-81897d82593c)  
 
 - The approach chosen was the **Medallion Architecture**
+
+
+** EXPLAIN WHY !!!!!!!!!!!!111
 ---
-### Data Architecture
+### 🏛️ Data Architecture
 ![image](https://github.com/user-attachments/assets/f21c6ff1-51f3-4a67-ac5c-b083481e475e)  
 
 ---
 
-### Layer Specifications
+### 📑 Layer Specifications
 ![image](https://github.com/user-attachments/assets/b77d738e-cb06-45fb-8cc1-608d169c75bc)  
 
 ---
-### Creating Database and schema
+### 🗄️ Creating Database and schema
 
 """" GIVE LINK TO SCRIPT""""
 
 ---
 
-### ETL (Extraction, Transformation, Load)
+### 🔄 ETL (Extraction, Transformation, Load)
 
 ![image](https://github.com/user-attachments/assets/03755803-1c9e-4cd1-a641-d4d2c1f0791c)
 
-
+** EXPLAIN !!!
 
 ---
 ##  🟤 Bronze Layer
@@ -49,7 +52,7 @@ The relations are as follows:
 
 ![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
 
-### Coding and Validating
+### 🛠️ Coding and Validating
 [Link to DDL script (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/ddl_silver.sql) - *Create silver Tables (**Note: updated before data transformation**)*
 
 [Link to Data Quality Check - Bronze Layer](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_bronze.sql) - *Test bronze layer data integrity before cleaning*   
@@ -61,8 +64,9 @@ The relations are as follows:
 
 ---
 ##  🟡 Gold Layer 
-![image](https://github.com/user-attachments/assets/90a53a72-5e32-4f20-91ef-d266eabeac3b)  
+![image](https://github.com/user-attachments/assets/1e5bcaf9-f085-477a-99b2-44d87eba164c)
+
 
 ---
-### Data Flow Diagram
+### ➡️ Data Flow Diagram
 ![image](https://github.com/user-attachments/assets/c53e32c3-e676-4500-a264-7d5f297b15aa)
