@@ -19,6 +19,14 @@
 """" GIVE LINK TO SCRIPT""""
 
 ---
+
+### ETL (Extraction, Transformation, Load)
+
+![image](https://github.com/user-attachments/assets/03755803-1c9e-4cd1-a641-d4d2c1f0791c)
+
+
+
+---
 ### Bronze layer Steps
 ![image](https://github.com/user-attachments/assets/f0f5a534-33da-4963-b05a-15e020322df0)  
 
@@ -30,8 +38,9 @@
 ### Silver layer Steps
 ![image](https://github.com/user-attachments/assets/0b0f0302-f4d9-4a30-b09e-20e3aea83e1a)
 
-![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)
+![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
 
+** LINK TO DATA QUALITY CHECK SCRIPT
 ---
 ### Gold layer Steps
 ![image](https://github.com/user-attachments/assets/90a53a72-5e32-4f20-91ef-d266eabeac3b)  
