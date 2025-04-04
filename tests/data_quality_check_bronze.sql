@@ -1,13 +1,28 @@
-/* Data Quality Check in Bronze Layer before inserting data into Silver Layer */
+/*
+===============================================================================
+Quality Check (Bronze Layer)
+===============================================================================
+Script Purpose:
+    This script performs various quality checks for data consistency, accuracy, 
+    and standardization across the 'bronze' layer. It includes checks for:
+    - Null or duplicate primary keys.
+    - Unwanted spaces in string fields.
+    - Data standardization and consistency.
+    - Invalid date ranges and orders.
+    - Data consistency between related fields.
 
+Usage Notes:
+    - Run these checks before data loading Silver Layer.
+    - Investigate and solve any discrepancies found during the checks.
+===============================================================================
+*/
 /* ========================================================
 1. bronze.crm_cust_info
    ======================================================== */
 
 SELECT * FROM bronze.crm_cust_info
-    
--- 1.  Check for NULLs or duplicates in Primary Key
--- Expectiation: Primanry Key must be unique and not null. (No Result)
+ 
+-- 1.  Check for NULLs or duplicates in Primary Key - Primanry Key must be unique and not null.
 SELECT 
       cst_id,
       COUNT(*) AS pk_count
@@ -29,11 +44,10 @@ FROM(SELECT *,
 FROM bronze.crm_cust_info
 WHERE cst_id IS NOT NULL
 )t WHERE flag_last = 1
--- Findings: This is the duplicate-free data we need
+-- Findings: This is the duplicate-free data we need (Include in Insert Query)
 
 
 -- 2. Check for unwanted spaces in string values
--- Expectiation: No Results
 SELECT cst_firstname
 FROM bronze.crm_cust_info
 WHERE cst_firstname != TRIM(cst_firstname) -- Where column is not equal to the column after trimming. Removes leading and trailing spaces
@@ -48,32 +62,23 @@ SELECT cst_gndr
 FROM bronze.crm_cust_info
 WHERE   cst_gndr != TRIM(cst_gndr);
 -- Findings: Unwanted spaces not present
--- Solution: TRIM(cst_firstname) AS cst_firstname, TRIM(cst_lastname) AS cst_lastname,
 
 -- 3. Check data standardization and consistency of values in low cardinality columns (M/F, Yes/No columns)
 SELECT 
       DISTINCT(cst_gndr)
 FROM bronze.crm_cust_info
--- Findings: Only 3 values - M, F, NULL
+-- Findings: M, F, NULL
 -- We want meaningfull values. eg: M = Male
--- Solution: CASE WHEN statement
+
 SELECT 
       DISTINCT(cst_marital_status)
 FROM bronze.crm_cust_info
+-- Findings: M, S, NULL
 
 -- 4. Check dates for data type
 -- As defined in the data type it is indeed a date
 
--- Transformation Query for Silver Layer 
-/*
-INSERT INTO silver.crm_cust_info (
-                                 cst_id, 
-			                     cst_key, 
-			                     cst_firstname, 
-								 cst_lastname, 
-								 cst_marital_status, 
-								 cst_gndr,
-								 cst_create_date ) -- Insert the below cleaned data into the silver layer's crm_cust_info table.
+-- Transformation Query for Silver Layer (Query with Cleaned Results)
 SELECT 
       cst_id,
 	  cst_key,
@@ -96,16 +101,15 @@ FROM(
       FROM bronze.crm_cust_info
       WHERE cst_id IS NOT NULL
       )t WHERE flag_last = 1; -- 1. Remove duplicated by ranking and choosing only flags = 1
-	*/
 
 
 /* ========================================================
 2. bronze.crm_prd_info
    ======================================================== */
+
 SELECT * FROM bronze.crm_prd_info
 
 -- 1.  Check for NULLs or duplicates in Primary Key
--- Expectiation: No Result
 SELECT 
       prd_id,
       COUNT(*) AS pk_count
@@ -117,7 +121,8 @@ HAVING COUNT(*) > 1 OR prd_id IS NULL
 -- 2. Split Column (prd_key)
 -- Here prd_key has category id + product key. (eg: CO-RF-FR_R92B-58. first 5 char is category id as seen in erp_px_cat_g1v2)
 -- However the category id in erp_px_cat_g1v2 has "_" instead of "-")
---SELECT * FROM bronze.erp_px_cat_g1v2
+SELECT * FROM bronze.erp_px_cat_g1v2
+SELECT * FROM bronze.crm_sales_details
 SELECT
      prd_id,
 	 prd_key,
@@ -129,6 +134,18 @@ SELECT
 	 prd_start_dt,
 	 prd_end_dt
 FROM bronze.crm_prd_info
+-- The newly created column "cat_id" in crm_prd_info will link to "id" in erp_px_cat_g1v2
+-- The refined "prd_key" in crm_prd_info will link to "sls_prd_key" crm_sales_details
+
+-- Check cat_id in crm_prd_info that is not available in erp_px_cat_g1v2
+SELECT
+     prd_id,
+	 prd_key,
+	 REPLACE(SUBSTRING(prd_key, 1, 5), '-', '_') AS cat_id, 
+	 SUBSTRING(prd_key, 7, LEN(prd_key)) AS prd_key 
+FROM bronze.crm_prd_info 
+WHERE REPLACE(SUBSTRING(prd_key, 1, 5), '-', '_') NOT IN (SELECT DISTINCT id FROM bronze.erp_px_cat_g1v2) -- Filter's out any unmatched data after applying transformation
+-- Found a category that is not available in erp_px_cat_g1v2
 
 -- 3. Check for unwanted spaces in string values
 -- Expectiation: No Results
@@ -143,15 +160,15 @@ SELECT
 FROM bronze.crm_prd_info
 WHERE prd_cost < 0 
    OR prd_cost IS NULL
--- Findings: No negative values. But NULLs present. 
+-- Findings: No negative values. But NULLs present
 -- Chose to replace NULL with 0
 
--- 5. Normalize / Standardize prd_line.
+-- 5. Normalize / Standardize prd_line
 SELECT DISTINCT(prd_line)
 FROM bronze.crm_prd_info
--- Do CASE WHEN
+-- Findings: NULL, M, R, S, T
 
--- 6. Start and end date - Check for Invalid Date Orders
+-- 6. Check for Invalid Date Orders - Start and end date 
 -- The end date must not be earlier than the start date
 SELECT *
 FROM bronze.crm_prd_info
@@ -171,16 +188,6 @@ FROM bronze.crm_prd_info
 WHERE prd_key IN ('AC-HE-HL-U509-R', 'AC-HE-HL-U509')
 
 -- Transformation Query for Silver Layer 
-/* 
-INSERT INTO silver.crm_prd_info (
-								  prd_id,
-								  cat_id,
-								  prd_key,
-								  prd_nm,
-								  prd_cost,
-								  prd_line,
-								  prd_start_dt,
-								  prd_end_dt)
 SELECT
      prd_id,
 	 REPLACE(SUBSTRING(prd_key, 1, 5), '-', '_') AS cat_id, -- 2. (a) Extract from 1st position till 5th. - **Did modification to DDL of silver - Added cat_id NVARCHAR(50).
@@ -197,12 +204,13 @@ SELECT
 	 CAST(prd_start_dt AS DATE) AS prd_start_dt, -- **Did modification to DDL of silver - DATETIME -> DATE. 
 	 CAST(LEAD(prd_start_dt) OVER(PARTITION BY prd_key ORDER BY prd_start_dt ASC) -1 AS DATE) AS prd_end_dt --  The End Date of previous record = Start Date of NEXT record MINUS 1 day. - **Did modification to DDL of silver - DATETIME -> DATE.
 FROM bronze.crm_prd_info;
-*/ 
+-- **Update Data Type for prd_start_dt and prd_end_dt in DDL (silver) before inserting into silver layer**
 
 
 /* ========================================================
 3. bronze.crm_sales_details
    ======================================================== */
+
 SELECT * FROM bronze.crm_sales_details
 
 -- 1. Check sls_ord_num for unwanted spaces (String)
@@ -213,8 +221,8 @@ WHERE sls_ord_num != TRIM(sls_ord_num)
 -- Finding: No Result!
 
 -- 2. Check Keys (meant to be connected with other tables)
--- prd_key of crm_sales_details connects to prd_key of crm_prd_info
--- cst_id of crm_sales_details connects to cst_id of crm_cust_info
+-- "sls_prd_key" of crm_sales_details connects to "prd_key" of crm_prd_info
+-- "cst_id: of crm_sales_details connects to :cst_id" of crm_cust_info
 SELECT
 		sls_ord_num,
 		sls_prd_key,
@@ -226,22 +234,10 @@ SELECT
 		sls_quantity,
 		sls_price
 FROM bronze.crm_sales_details
-WHERE sls_prd_key NOT IN (SELECT sls_prd_key FROM silver.crm_prd_info)
--- Findings: No results - Meaning all sls_prd_key from crm_sales_details can be connected with crm_prd_info
-
-SELECT
-		sls_ord_num,
-		sls_prd_key,
-		sls_cust_id,
-		sls_order_dt,
-		sls_ship_dt,
-		sls_due_dt,
-		sls_sales,
-		sls_quantity,
-		sls_price
-FROM bronze.crm_sales_details
-WHERE sls_cust_id NOT IN (SELECT cst_id FROM silver.crm_cust_info)
--- Findings: No results - Meaning all sls_cust_id crm_sales_details can be connected with crm_cust_info
+--WHERE sls_prd_key NOT IN (SELECT prd_key FROM silver.crm_prd_info)
+WHERE sls_cust_id NOT IN (SELECT cst_id FROM silver.crm_cust_info)  
+-- Findings: No results - Meaning all "sls_prd_key" from crm_sales_details can be connected with "prd_key" of crm_prd_info
+-- Findings: No results - Meaning all "sls_cust_id" from crm_sales_details can be connected with "cst_id" of crm_cust_info
 
 -- 3. Check Invalid Dates - sla_order_dt, sls_ship_dt, sls_due_dt
 -- According to source system this is INT. We added these as INT in the DDL
@@ -276,9 +272,18 @@ FROM bronze.crm_sales_details
 WHERE sls_order_dt > sls_ship_dt OR sls_order_dt > sls_due_dt
 -- Findings: No Results
 
---5. Check Formula
---Business Rule: 1. Sales = Quantity * Price. 2. Negatives, Zeros & NULLs Not Allowed
-
+-- 5. Check Formula
+-- Business Rule: 1. Sales = Quantity * Price. 2. Negatives, Zeros & NULLs Not Allowed
+SELECT 
+      sls_sales,
+	  sls_quantity,
+	  sls_price
+FROM bronze.crm_sales_details
+WHERE sls_sales != sls_quantity * sls_price
+OR sls_sales IS NULL OR sls_quantity IS NULL OR sls_price IS NULL
+OR sls_sales <=0 OR sls_quantity <=0 OR sls_price <=0
+ORDER BY sls_sales, sls_quantity, sls_price
+-- Found results with incorrect formula, NULLS, negative numbers and zeros
 
 SELECT DISTINCT
 		sls_sales AS old_sls_sales,
@@ -298,29 +303,11 @@ SELECT DISTINCT
         END AS sls_price
 
 FROM bronze.crm_sales_details
-WHERE sls_sales != sls_quantity * sls_price -- Findings: Found Values that dont follow the formula
-OR sls_sales IS NULL OR sls_quantity IS NULL OR sls_price IS NULL -- Findings: NULLS present
-OR sls_sales <= 0 OR sls_quantity <= 0 OR sls_price <= 0 -- Findings: Negatives and Zeros present
-ORDER BY sls_sales,
-		sls_quantity,
-		sls_price
 -- Solution Rules: (a). If Sales is negative, zero or null, derive it using Quantity and Price
 --                 (b). If price is zero or null, calculate it using Sales and quantity
 --                 (c). If price is negative, convert it to a positive value
 
 -- Transformation Query for Silver Layer 
-/* 
-INSERT INTO silver.crm_sales_details (
-										sls_ord_num,
-										sls_prd_key,
-										sls_cust_id,
-										sls_order_dt,
-										sls_ship_dt,
-										sls_due_dt,
-										sls_sales,
-										sls_quantity,
-										sls_price
-		                              )
 SELECT
 		sls_ord_num,
 		sls_prd_key,
@@ -353,14 +340,13 @@ SELECT
 			ELSE sls_price
         END AS sls_price
 FROM bronze.crm_sales_details
-*/ 
+-- **Update Data Type for sls_order_dt, sls_ship_dt, and sls_due_dt in DDL (silver) before inserting into silver layer**
 
 
 /* ========================================================
 4. bronze.erp_cust_az12
    ======================================================== */
  
-
 -- 1. Check table links
 -- From the data integration model we can see that cid of erp_cust_az12 can be liked with cst_key of crm_cust_info
 SELECT * FROM bronze.erp_cust_az12
@@ -382,12 +368,6 @@ FROM bronze.erp_cust_az12
 -- Findings: NULL, Blank Space, F, M, Female, Male 
 
 -- Transformation Query for Silver Layer 
-/*
-INSERT INTO silver.erp_cust_az12 (
-									cid,
-									bdate,
-									gen
-		)
 SELECT
        CASE  
 	       WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid)) --1. Remove 'NAS' prefix
@@ -403,14 +383,12 @@ SELECT
 	       ELSE 'n/a'
 	   END AS gen
 FROM bronze.erp_cust_az12
-*/
 
 
 /* ========================================================
 5. bronze.erp_loc_a101
    ======================================================== */
  
-
  -- 1. Table Links
  -- cid of erp_loc_a101 can be linked with cid of crm_cust_info
  SELECT * FROM bronze.erp_loc_a101
@@ -423,18 +401,7 @@ SELECT
 FROM bronze.erp_loc_a101
 -- Findings: multiple versions of one country 
 
-
-SELECT 
-      cid,
-	  cntry
-FROM bronze.erp_loc_a101
-
 -- Transformation Query for Silver Layer 
-/*
-INSERT INTO silver.erp_loc_a101 (
-								 cid,
-								 cntry
-		)
 SELECT 
       REPLACE(cid, '-', '') AS cid, --1. Handlled invalid values - replaced '-' with '')
 	  
@@ -445,8 +412,6 @@ SELECT
 		  ELSE TRIM(cntry)
 	  END AS cntry --2. Data Normalization 
 FROM bronze.erp_loc_a101
-
-*/
 
 
 /* ========================================================
@@ -477,23 +442,17 @@ FROM bronze.erp_px_cat_g1v2
 -- This table doesnt require cleaning
 
 -- Transformation Query for Silver Layer 
-/*
-INSERT INTO silver.erp_px_cat_g1v2 (
-			id,
-			cat,
-			subcat,
-			maintenance
-		)
 SELECT 
       id,
 	  cat,
 	  subcat,
 	  maintenance
 FROM bronze.erp_px_cat_g1v2
-*/
 
 
 
+/*======================================================== */
+-- Unlean Data
 SELECT * FROM bronze.crm_cust_info
 SELECT * FROM bronze.crm_prd_info
 SELECT * FROM bronze.crm_sales_details
