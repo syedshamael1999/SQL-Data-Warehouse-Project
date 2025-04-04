@@ -27,22 +27,40 @@
 
 
 ---
-### Bronze layer Steps
+##  🟤 Bronze Layer
 ![image](https://github.com/user-attachments/assets/f0f5a534-33da-4963-b05a-15e020322df0)  
 
 - Source System Interview Topics:
 
 ![image](https://github.com/user-attachments/assets/85877495-4a59-488c-8d3c-a9ffd0d92004)
 
+** LINK TO BRONZE DDL
+** LINK TO BRONZE PROC
 ---
-### Silver layer Steps
+## ⚪ Silver Layer 
 ![image](https://github.com/user-attachments/assets/0b0f0302-f4d9-4a30-b09e-20e3aea83e1a)
+
+### 🔗 Data Integration Model
+- After analyzing the data in the **bronze layer**, I identified columns in each table that can be linked with other tables within the data warehouse.
+- This analysis also helped in understanding the purpose and structure of each table.
+- This model helped clean the data in the **silver layer**.
+
+The relations are as follows:
 
 ![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
 
-** LINK TO DATA QUALITY CHECK SCRIPT
+### Coding and Validating
+[Link to DDL script (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/ddl_silver.sql) - *Create silver Tables (**Note: updated before data transformation**)*
+
+[Link to Data Quality Check - Bronze Layer](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_bronze.sql) - *Test bronze layer data integrity before cleaning*   
+
+[Link to Silver Layer Stored Procedures](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/proc_load_silver.sql) - *Inserts cleaned data into silver layer (**Note: update data types in silver DDL**)*
+
+[Link to Data Quality Check (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_silver.sql) - *Test silver layer data integrity after cleaning and inserting data into silver layer*
+
+
 ---
-### Gold layer Steps
+##  🟡 Gold Layer 
 ![image](https://github.com/user-attachments/assets/90a53a72-5e32-4f20-91ef-d266eabeac3b)  
 
 ---
