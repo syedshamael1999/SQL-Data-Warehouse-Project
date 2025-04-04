@@ -1,4 +1,4 @@
-# Datawarehouse Details
+# Data Warehouse Project Walkthrough
 
 ### 🧠 Datawarehouse Approach Selection
 ![image](https://github.com/user-attachments/assets/38fa962a-bdfd-46bd-8ece-81897d82593c)  
@@ -25,15 +25,15 @@
 
 ### 🔄 ETL (Extraction, Transformation, Load)
 
-![image](https://github.com/user-attachments/assets/03755803-1c9e-4cd1-a641-d4d2c1f0791c)
+![image](https://github.com/user-attachments/assets/03755803-1c9e-4cd1-a641-d4d2c1f0791c)  
 
-** EXPLAIN !!!
+* The highlighted components in the image above are the ones implemented in this project.
 
 ---
 ##  🟤 Bronze Layer
 ![image](https://github.com/user-attachments/assets/f0f5a534-33da-4963-b05a-15e020322df0)  
 
-- Source System Interview Topics:
+Source System Interview Topics are as follows:
 
 ![image](https://github.com/user-attachments/assets/85877495-4a59-488c-8d3c-a9ffd0d92004)
 
