@@ -1,7 +1,7 @@
 /* Data Quality Check in Bronze Layer before inserting data into Silver Layer */
 
 /* ========================================================
-1. crm_cust_info
+1. silver.crm_cust_info
    ======================================================== */
 
 SELECT 
@@ -136,7 +136,7 @@ FROM silver.crm_cust_info
 
 SELECT * FROM silver.crm_cust_info
 /* ========================================================
-2. crm_prd_info
+2. silver.crm_prd_info
    ======================================================== */
 SELECT * FROM bronze.crm_prd_info
 
@@ -277,7 +277,7 @@ FROM silver.crm_prd_info
 WHERE prd_id IN ('212', '213', '214', '215', '216', '217')
 
 /* ========================================================
-3. crm_sales_details
+3. silver.crm_sales_details
    ======================================================== */
 SELECT
 		sls_ord_num,
@@ -461,7 +461,7 @@ ORDER BY sls_sales,
 -- Findings: No Results!
 
 /* ========================================================
-4. erp_cust_az12
+4. silver.erp_cust_az12
    ======================================================== */
  
 
@@ -528,7 +528,7 @@ FROM silver.erp_cust_az12
 -- Findings: n/a, Female, Male 
 
 /* ========================================================
-5. erp_loc_a101
+5. silver.erp_loc_a101
    ======================================================== */
  
 
@@ -583,7 +583,7 @@ FROM silver.erp_loc_a101
 
 
 /* ========================================================
-6. erp_px_cat_g1v2
+6. silver.erp_px_cat_g1v2
    ======================================================== */
 
  -- 1. Table links
