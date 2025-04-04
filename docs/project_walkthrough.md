@@ -53,7 +53,7 @@ The relations are as follows:
 ![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
 
 ### 🛠️ Coding and Validating
-[Link to DDL script (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/ddl_silver.sql) - *Create silver Tables (**Note: updated before data transformation**)*
+[Link to DDL script (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/ddl_silver.sql) - *Create silver Tables (**Note: updated before inserting data into silver layer**)*
 
 [Link to Data Quality Check - Bronze Layer](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_bronze.sql) - *Test bronze layer data integrity before cleaning*   
 
