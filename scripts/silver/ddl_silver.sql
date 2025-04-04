@@ -49,7 +49,7 @@ CREATE TABLE silver.crm_sales_details (
 	sls_cust_id  INT,
 	sls_order_dt DATE, -- Modified from INT to DATE after cleaning data
 	sls_ship_dt  DATE, -- Modified from INT to DATE after cleaning data
-	sls_due_dt   DATE,
+	sls_due_dt   DATE, -- Modified from INT to DATE after cleaning data
 	sls_sales    INT,
 	sls_quantity INT,
 	sls_price    INT,
