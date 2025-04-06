@@ -1,6 +1,10 @@
 # Data Warehouse and Analytics Project
 This project demonstrates the development of a Data Warehouse using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.  
 
+
+
+[Link to Project Plan](https://www.notion.so/Data-Warehouse-Project-1c1ede7b016a80c9bee9faa1763beaec?pvs=4)
+
 ---
 ## 🏛️ Data Architecture
 This project’s data architecture is built on the Medallion Architecture, utilizing Bronze, Silver, and Gold layers: 
@@ -29,4 +33,6 @@ Key Components:
 - ETL Pipeline Development
 - Data Modeling
 - Data Analytics
+
+
 ---
