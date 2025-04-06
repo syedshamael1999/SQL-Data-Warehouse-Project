@@ -39,7 +39,7 @@ Key Components:
 > 📌 For a detailed step-by-step explanation of the entire project, check out the  
 > 👉 [**Project Walkthrough**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/docs/project_walkthrough.md)
 ---
-[**View Project Documents**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/docs) | [**View DW Layer Scripts**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/scripts) | [**View Quality Check Scripts**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/scripts/quality_checks) | [**View Datasets**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/datasets)
+[**Project Documents**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/docs) | [**DW Layer Scripts - DDL & Stored Procedures**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/scripts) | [**Quality Check Scripts**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/scripts/quality_checks) | [**Source Systems**](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/datasets)
 
 
 
