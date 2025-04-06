@@ -27,12 +27,14 @@ Key Components:
 <br><br> 
 
 💡 This project showcases my expertise in:
+- Project Management
 - SQL Development
 - Data Architecture
 - Data Engineering
 - ETL Pipeline Development
 - Data Modeling
 - Data Analytics
+
 ---
 ## 👀 Project Walkthrough
 
