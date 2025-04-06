@@ -152,5 +152,6 @@ The following Data Catalog provides a detailed overview of the Gold Layer in the
 
 ---
 > **Note:** All diagrams in this project were created using [draw.io](https://www.drawio.com/).
-> [🔗 Project Home Page](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main?tab=readme-ov-file) – Explore the full SQL Data Warehouse Project, including documentation, scripts, and visualizations.
+
+> [Project Home Page](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main?tab=readme-ov-file) – Explore the full SQL Data Warehouse Project, including documentation, scripts, and visualizations.
 
