@@ -1,5 +1,7 @@
 # Data Warehouse Project Walkthrough
 
+*** RE-UPLOAD PICTURES!!
+
 ### 🧠 Datawarehouse Approach Selection
 ![image](https://github.com/user-attachments/assets/38fa962a-bdfd-46bd-8ece-81897d82593c)  
 
