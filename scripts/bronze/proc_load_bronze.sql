@@ -35,9 +35,9 @@ BEGIN
 		TRUNCATE TABLE bronze.crm_cust_info; --Empty table before inserting
 		PRINT '>> Inserting Data Into: bronze.crm_cust_info';
 		BULK INSERT bronze.crm_cust_info
-		FROM 'C:\Users\user\Downloads\sql-data-warehouse-project\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
+		FROM 'C:\Users\user\Downloads\sql-data-warehouse-project\sql-data-warehouse-project\datasets\source_crm\cust_info.csv' -- Make sure to paste the path of the file correctly (Your System)
 		WITH (
-			FIRSTROW = 2, --We are loading from 2nd row (in the csv files). The first row in the csv files are the column names which we already created in the previous step.
+			FIRSTROW = 2, --We are loading from 2nd row (in the csv files). The first row in the csv files are the column names which we already created in the previous step
 			FIELDTERMINATOR = ',', --Specify the delimiter the values are split by
 			TABLOCK --Locks entire table during loading
 		);
