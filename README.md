@@ -12,7 +12,7 @@ This project’s data architecture is built on the Medallion Architecture, utili
 - 🥈 **Silver Layer**: Includes data cleansing, standardization, and normalization processes to prepare data for analysis.
 - 🥇 **Gold Layer**: Houses business-ready data modeled into a Star Schema, optimized for reporting and analytics.
 
-(The architecture was designed using Draw.io for visualization and documentation.) 
+*(The architecture was designed using Draw.io for visualization and documentation.)* 
 
 ![Data Architecture](https://github.com/user-attachments/assets/26031a29-481c-49ad-84e2-85b844717602)
 
