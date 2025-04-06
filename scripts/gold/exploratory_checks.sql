@@ -4,7 +4,7 @@ Exploratory Checks On Silver Layer
 ===============================================================================
 Script Purpose:
     This script performs critical exploratory checks on Silver Layer tables to 
-    ensure data quality before building Gold Layer dimensions and fact. It helps 
+    ensure data quality before building Gold Layer dimensions and fact (Star Schema). It helps 
     validate that incoming data is clean, consistent, and reliable.
 
 Usage Notes:
