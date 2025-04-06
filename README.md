@@ -3,7 +3,7 @@ This project demonstrates the development of a Data Warehouse using MS SQL Serve
 
 
 
-[Link to Project Plan](https://www.notion.so/Data-Warehouse-Project-1c1ede7b016a80c9bee9faa1763beaec?pvs=4)
+[Link to Project Roadmap (Epics & Tasks)](https://www.notion.so/Data-Warehouse-Project-1c1ede7b016a80c9bee9faa1763beaec?pvs=4)
 
 ---
 ## 🏛️ Data Architecture
