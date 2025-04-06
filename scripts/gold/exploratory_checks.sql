@@ -77,7 +77,7 @@ ON        ci.cst_key = la.cid
 --           4. Left row n/a, right row NULL - NULL due to no matches when tables are joined.
 
 
--- Final Query
+-- Final Query (Use this to create views)
 SELECT 
           ROW_NUMBER() OVER(ORDER BY cst_id) AS customer_key, -- Surrogate Key
 		  ci.cst_id                          AS customer_id,
@@ -141,7 +141,7 @@ WHERE     prd_end_dt IS NULL -- To filter out all historical data - old data con
 HAVING COUNT(*) >1
 -- No Duplicates
 
---Final Query
+-- Final Query (Use this to create views)
 SELECT 
           ROW_NUMBER() OVER (ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key, -- Surrogate key
 		  pn.prd_id       AS product_id,
@@ -173,6 +173,7 @@ SELECT * FROM gold.dim_products
 SELECT * FROM silver.crm_sales_details
 SELECT * FROM gold.dim_customers
 
+-- Final Query (Use this to create views)
 SELECT 
           sd.sls_ord_num  AS order_number,
 		  pr.product_key  AS product_key, -- Replacing sd.sls_prd_key with Products Surrogate Key 
