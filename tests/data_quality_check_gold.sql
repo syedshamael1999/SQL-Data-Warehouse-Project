@@ -1,6 +1,6 @@
 /*
 ===============================================================================
-Quality Checks
+Quality Check (Gold Layer)
 ===============================================================================
 Script Purpose:
     This script performs quality checks to validate the integrity, consistency, 
