@@ -32,7 +32,7 @@ This diagram shows the data flow from source systems (CRM & ERP) into the data w
 ---
 ### 🗄️ Creating Database and schemas
 
-The first step is to create a database. This script creates a new database named `DataWarehouse` after checking if it already exists. If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas 
+**The first step** is to create a database. The following script creates a new database named `DataWarehouse` after checking if it already exists. If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas 
 within the database: `bronze`, `silver`, and `gold`. 
 
 🔹 [Database & Schemas Script](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/init_database.sql)
