@@ -25,9 +25,10 @@
 
 ### 🔄 ETL (Extraction, Transformation, Load)
 
+The highlighted components in the image below are the ones implemented in this project:
+
 ![image](https://github.com/user-attachments/assets/03755803-1c9e-4cd1-a641-d4d2c1f0791c)  
 
-* The highlighted components in the image above are the ones implemented in this project.
 
 ---
 ##  🥉 Bronze Layer
@@ -68,7 +69,8 @@ The relations are as follows:
 ![image](https://github.com/user-attachments/assets/1e5bcaf9-f085-477a-99b2-44d87eba164c)
 
 ### 🔗 Data Integration Model (Revised)
-- The revised model with **Business Objects** are as follows:
+
+The revised model with **Business Objects** are as follows:
 
 ![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
 
