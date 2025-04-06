@@ -9,7 +9,8 @@
 ** EXPLAIN WHY !!!!!!!!!!!!111
 ---
 ### 🏛️ Data Architecture
-![image](https://github.com/user-attachments/assets/f21c6ff1-51f3-4a67-ac5c-b083481e475e)  
+
+![image](https://github.com/user-attachments/assets/6b34206f-19b4-4e56-96b9-a309ee212b6f)
 
 ---
 
