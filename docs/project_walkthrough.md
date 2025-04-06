@@ -1,6 +1,6 @@
 # Data Warehouse Project Walkthrough
 
-This project demonstrates how I developed a Data Warehouse using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.
+This project demonstrates how I developed a Data Warehouse (Medallion Architecture) using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.
 
 - [Project Requirements](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/docs/project_requirements.md)
 - [Naming Convention](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/docs/naming_convention.md) - *Guidelines for naming everything in the project*
