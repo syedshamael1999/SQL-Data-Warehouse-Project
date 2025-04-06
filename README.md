@@ -14,7 +14,7 @@ This project’s data architecture is built on the Medallion Architecture, utili
 
 (The architecture was designed using Draw.io for visualization and documentation.) 
 
-![image](https://github.com/user-attachments/assets/840f5052-7863-4807-a57e-52ff7566fb6e)
+![image](https://github.com/user-attachments/assets/6b34206f-19b4-4e56-96b9-a309ee212b6f)
 
 
 ---
