@@ -30,7 +30,7 @@
 * The highlighted components in the image above are the ones implemented in this project.
 
 ---
-##  🟤 Bronze Layer
+##  🥉 Bronze Layer
 ![image](https://github.com/user-attachments/assets/f0f5a534-33da-4963-b05a-15e020322df0)  
 
 Source System Interview Topics are as follows:
@@ -40,7 +40,7 @@ Source System Interview Topics are as follows:
 ** LINK TO BRONZE DDL
 ** LINK TO BRONZE PROC
 ---
-## ⚪ Silver Layer 
+## 🥈 Silver Layer 
 ![image](https://github.com/user-attachments/assets/0b0f0302-f4d9-4a30-b09e-20e3aea83e1a)
 
 ### 🔗 Data Integration Model
@@ -50,7 +50,8 @@ Source System Interview Topics are as follows:
 
 The relations are as follows:
 
-![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
+![image](https://github.com/user-attachments/assets/44e51822-3a05-43c1-a08c-0791a667881a)
+
 
 ### 🛠️ Coding and Validating
 [Link to DDL script (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/ddl_silver.sql) - *Create silver Tables (**Note: updated before inserting data into silver layer**)*
@@ -63,9 +64,16 @@ The relations are as follows:
 
 
 ---
-##  🟡 Gold Layer 
+##  🥇 Gold Layer 
 ![image](https://github.com/user-attachments/assets/1e5bcaf9-f085-477a-99b2-44d87eba164c)
 
+### 🔗 Data Integration Model (Revised)
+- The revised model with **Business Objects** are as follows:
+
+![image](https://github.com/user-attachments/assets/a92700d5-1730-45a8-8616-e60c148c5960)  
+
+### Data Model (Sales Data Mart - Star Schema)
+![image](https://github.com/user-attachments/assets/04732813-bfe6-4694-a6ba-e1f694c5c822)
 
 ---
 ### ➡️ Data Flow Diagram
