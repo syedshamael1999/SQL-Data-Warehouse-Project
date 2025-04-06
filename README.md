@@ -1,5 +1,5 @@
 # Data Warehouse and Analytics Project
-This project demonstrates how I developed a Data Warehouse using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.  
+This project demonstrates how I developed a Data Warehouse (Medallion Architecture) using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.  
 
 
 
