@@ -2,6 +2,9 @@
 
 This project demonstrates how I developed a Data Warehouse (Medallion Architecture) using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.
 
+The ETL logic was built using T-SQL stored procedures and scripts, following standards for staging, cleansing, and dimensional modeling. This logic is portable, and can be migrated to cloud-native ETL platforms such as Databricks SQL or dbt with minimal refactoring.
+
+
 - [Project Requirements](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/docs/project_requirements.md)
 - [Naming Convention](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/docs/naming_convention.md) - *Guidelines for naming everything in the project*
 - [Source Systems](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/tree/main/datasets) - *Data Source for this project*
