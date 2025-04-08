@@ -38,7 +38,7 @@ within the database: `bronze`, `silver`, and `gold`.
 🔹 [Database & Schemas Script](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/init_database.sql)
 
 
-### 🔍 Verifying the Database and Schemas
+### 🔍 Verifying the Creation
 
 To confirm the successful creation of the database and its schemas after the script is executed:
 
