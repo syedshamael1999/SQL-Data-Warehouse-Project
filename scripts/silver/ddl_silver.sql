@@ -29,13 +29,13 @@ IF OBJECT_ID('silver.crm_prd_info', 'U') IS NOT NULL
 GO
 CREATE TABLE silver.crm_prd_info (
 	prd_id        INT,
-	cat_id        NVARCHAR(50), -- Added after cleaning data
+	cat_id        NVARCHAR(50), -- Added during cleaning data
 	prd_key       NVARCHAR(50),
 	prd_nm	      NVARCHAR(50),
 	prd_cost	    INT,
 	prd_line	    NVARCHAR(50),
-	prd_start_dt  DATE, -- Modified from DATETIME to DATE after cleaning data
-	prd_end_dt    DATE, -- Modified from DATETIME to DATE after cleaning data
+	prd_start_dt  DATE, -- Modified from DATETIME to DATE during cleaning data
+	prd_end_dt    DATE, -- Modified from DATETIME to DATE during cleaning data
 	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 GO
@@ -47,9 +47,9 @@ CREATE TABLE silver.crm_sales_details (
 	sls_ord_num  NVARCHAR(50),
 	sls_prd_key  NVARCHAR(50),
 	sls_cust_id  INT,
-	sls_order_dt DATE, -- Modified from INT to DATE after cleaning data
-	sls_ship_dt  DATE, -- Modified from INT to DATE after cleaning data
-	sls_due_dt   DATE, -- Modified from INT to DATE after cleaning data
+	sls_order_dt DATE, -- Modified from INT to DATE during cleaning data
+	sls_ship_dt  DATE, -- Modified from INT to DATE during cleaning data
+	sls_due_dt   DATE, -- Modified from INT to DATE during cleaning data
 	sls_sales    INT,
 	sls_quantity INT,
 	sls_price    INT,
