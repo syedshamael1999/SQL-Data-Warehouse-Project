@@ -1,7 +1,7 @@
 # Data Warehouse Project (Data Engineering)
 This project demonstrates how I developed a Data Warehouse (Medallion Architecture) using MS SQL Server, incorporating ETL processes, data modeling, and data analytics. This project also highlights industry best practices in data engineering and analytics.  
 
-The ETL logic for this project was built using T-SQL stored procedures and scripts within SQL Server. It follows best practices in staging, cleansing, and dimensional modeling. This logic is portable and can be migrated to cloud-native ETL platforms (like Databricks SQL, dbt etc.) with minimal refactoring.
+The ETL logic was built using T-SQL stored procedures and scripts, following standards for staging, cleansing, and dimensional modeling. This logic is portable, and can be migrated to cloud-native ETL platforms such as Databricks SQL or dbt with minimal refactoring.
 
 [Project Roadmap (Epics & Tasks)](https://www.notion.so/Data-Warehouse-Project-1c1ede7b016a80c9bee9faa1763beaec?pvs=4)
 
