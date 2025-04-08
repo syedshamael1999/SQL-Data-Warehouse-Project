@@ -32,11 +32,22 @@ This diagram shows the data flow from source systems (CRM & ERP) into the data w
 ---
 ### 🗄️ Creating Database and schemas
 
-**The first step** is to create a database. The following script creates a new database named `DataWarehouse` after checking if it already exists. If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas 
+**The first step** is to create a database in Microsoft SQL Server Management Studio (SSMS). The following script creates a new database named `DataWarehouse` after checking if it already exists. If the database exists, it is dropped and recreated. Additionally, the script sets up three schemas 
 within the database: `bronze`, `silver`, and `gold`. 
 
 🔹 [Database & Schemas Script](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/init_database.sql)
 
+
+### 🔍 Verifying the Database and Schemas
+
+To confirm the successful creation of the database and its schemas after the script is executed:
+
+**1. Open Object Explorer**  
+**2. Navigate to:** `Object Explorer → Databases → DataWarehouse → Security → Schemas`
+
+You should see the following user-defined schemas: `bronze`, `silver`, `gold`
+
+These schemas represent the three layers of the **Medallion Architecture** and will store the respective tables as you move through the ETL pipeline.
 
 ---
 
@@ -63,14 +74,28 @@ Set up a meeting with source system experts to gather insights about the data. T
 
 [DDL Script (Bronze Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/bronze/ddl_bronze.sql) - *Create bronze tables* 
 
+**Verify Creation**: `Object Explorer → Databases → Datawarehouse → Tables`
+
+![image](https://github.com/user-attachments/assets/1cebe315-50e8-42f5-92dd-c633ede07733)
+
+
 [Stored Procedure (Bronze Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/bronze/proc_load_bronze.sql) - *Loads data from external CSV files into the bronze layer* (`BULK INSERT`)
+
+**Verify Creation**: `Object Explorer → Databases → Datawarehouse → Programmability → Stored Procedures`
+
+![image](https://github.com/user-attachments/assets/700dff58-3eb0-4aee-956e-9d326d54ddf6)
+
+***Usage**: Running the following code executes the `bronze.load_bronze` stored procedure (It extracts raw data from the source -> loads that raw data into tables under the `bronze` schema).*
+```sql 
+EXEC bronze.load_bronze; 
+```
 
 After Loading data, do the following quality checks:
 1. Check if data was added with a simple SELECT statement.
 2. Check Row count.
 3. Check that the data has not shifted and is present in the correct columns.
 
-   - Shifts are common when loading CSV files due to reasons such as: (a) Field separater is wrong (comma) (b) separator is present in the values and SQL isnt able to split data properly
+   - Shifts are common when loading CSV files due to reasons such as: (a) Field separater is wrong (comma). (b) separator is present in the values and SQL isnt able to split data properly.
 
 ---
 ## 🥈 Silver Layer (Cleaned Data)
@@ -94,12 +119,25 @@ The relations are as follows:
 ### 🛠️ Coding and Validating
 [DDL script (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/ddl_silver.sql) - *Create silver tables (**Note: updated before ETL for silver layer**)*
 
+**Verify Creation**: `Object Explorer → Databases → Datawarehouse → Tables`
+
+![image](https://github.com/user-attachments/assets/ee4d86b7-b6fd-4756-8366-62c3c0513ddb)
+
+
 [Data Quality Check (Bronze Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_bronze.sql) - *Test bronze layer data integrity before cleaning*   
 
 [ETL Stored Procedure (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/silver/proc_load_silver.sql) - *Extract, Transform & Load cleaned data into silver layer (**Note: updated data types in silver DDL before running**)*
 
-[Data Quality Check (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_silver.sql) - *Test silver layer data integrity after ETL for silver layer*
+`Verify Creation: Object Explorer → Databases → Datawarehouse → Programmability → Stored Procedures`
 
+![image](https://github.com/user-attachments/assets/f4b3de9b-4529-4678-bb99-edd3e39bba88)
+
+***Usage**: Running the following code executes the `silver.load_silver` stored procedure (It takes raw data from the Bronze layer → cleans and transforms it → loads the refined data into tables under the silver schema).*
+```sql 
+EXEC silver.load_silver; 
+```
+
+[Data Quality Check (Silver Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_silver.sql) - *Test silver layer data integrity after ETL for silver layer*
 
 ---
 ##  🥇 Gold Layer (Business-Ready Data)
@@ -119,12 +157,17 @@ Here is a revised model after identifying **Business Objects** (Sales, Product, 
 
 ### 🛠️ Coding and Validating
 
-[Exploratory Checks](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/gold/exploratory_checks.sql) - *Exploratory checks on Silver Layer to ensure data quality before building Gold Layer Views (dimensions & fact - Star Schema)*
+[Exploratory Checks](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/gold/exploratory_checks.sql) - *Exploratory checks on Silver Layer to ensure data quality before building Gold Layer Views (dimensions & fact tables - Star Schema)*
 
 [DDL Script (Gold Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/scripts/gold/ddl_gold.sql) - *Create Gold Views*
 
-[Data Quality Check (Gold Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_gold.sql) - *Test gold layer data integrity*
+**Verify Creation**: `Object Explorer → Databases → Datawarehouse → Views`
 
+![image](https://github.com/user-attachments/assets/c2900197-f9cc-4d4e-afbc-b6f70547e6c9)
+
+***Usage**: These views can be queried directly for analytics and reporting.*
+
+[Data Quality Check (Gold Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/tests/data_quality_check_gold.sql) - *Test gold layer data integrity*
 
 
 ### ⭐ Data Model (Star Schema)
