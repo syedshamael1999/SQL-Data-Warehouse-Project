@@ -430,7 +430,7 @@ FROM bronze.erp_px_cat_g1v2
 WHERE cat != TRIM(cat) OR subcat != TRIM(subcat) OR maintenance != TRIM(maintenance)
 -- Findings: No Results
 
--- 2. Check low cardinality data
+-- 3. Check low cardinality data
 SELECT DISTINCT
       --id,
 	  --cat,
