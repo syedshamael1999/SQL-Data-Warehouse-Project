@@ -197,7 +197,7 @@ The following Data Catalog provides a detailed overview of the Gold Layer in the
 [Data Catalog (Gold Layer)](https://github.com/syedshamael1999/SQL-Data-Warehouse-Project/blob/main/docs/data_catalog.md)
 
 ---
-## Next Steps
+## 🪜 Next Steps
 
 After the completion of this project i performed Exploratory Data Analysis (EDA) on the business-ready data in the Gold Layer.
 
