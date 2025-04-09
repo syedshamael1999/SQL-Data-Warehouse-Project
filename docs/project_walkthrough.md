@@ -199,7 +199,7 @@ The following Data Catalog provides a detailed overview of the Gold Layer in the
 ---
 ## 🪜 Next Steps
 
-After the completion of this project i performed Exploratory Data Analysis (EDA) on the business-ready data in the Gold Layer.
+After the completion of this project I performed Exploratory Data Analysis (EDA) on the business-ready data in the Gold Layer.
 
 Here is the link to EDA Project 👉 [Exploratory Data Analysis – Gold Layer Insights](https://github.com/syedshamael1999/SQL-Exploratory-Data-Analytics/tree/main?tab=readme-ov-file).
 
